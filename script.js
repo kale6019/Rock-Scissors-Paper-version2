@@ -1,74 +1,84 @@
-let playerScore = 0
-let computerScore = 0
+const computerChoiceDisplay = document.getElementById('computer-choice')
+const userChoiceDisplay = document.getElementById('user-choice')
+const resultDisplay = document.getElementById('result')
+const possibleChoices = document.querySelectorAll('button')
+let userChoice
+const userScoreDisplay = document.getElementById('user-score')
+const computerScoreDisplay = document.getElementById('computer-score')
 
-function playRound(playerSelection, computerSelection){
-    if(playerSelection == computerSelection){
-        playerScore++
-        computerScore++
-        return 'Tie!';
+let userScore = 0
+let computerScore = 0 
+const maxScore = 5;
+
+possibleChoices.forEach(possibleChoice => possibleChoice.addEventListener('click', (e) => {
+    userChoice = e.target.id
+    userChoiceDisplay.innerHTML = userChoice
+    choice()
+    playRound()
+    endGame()
+}));
+
+function choice() {
+    const randomNumber = Math.floor(Math.random() * 3) + 1;
+
+    if(randomNumber === 1){
+        computerChoice = 'rock'
     }
-    else if(playerSelection == 'rock' && computerSelection == 'paper'){
+
+    else if(randomNumber === 2){
+        computerChoice = 'scissors'
+    }
+
+    else { computerChoice = 'paper'}
+
+    computerChoiceDisplay.innerHTML = computerChoice
+}
+
+function playRound(){
+    if(userChoice == computerChoice){
+
+        result = 'Tie!';
+    }
+    else if(userChoice == 'rock' && computerChoice == 'paper'){
         computerScore++;
-        return 'You Lose!';
+        result = 'You Lose!';
         
     }
-    else if (playerSelection == 'rock' && computerSelection == 'scissors'){
-        playerScore++;
-        return 'You Win!';
+    else if (userChoice == 'rock' && computerChoice == 'scissors'){
+        userScore++;
+        result = 'You Win!';
         
     }
-    else if(playerSelection == 'scissors' && computerSelection == 'paper'){
-        playerScore++;
-        return 'You Win!';
+    else if(userChoice == 'scissors' && computerChoice == 'paper'){
+        userScore++;
+        result = 'You Win!';
         
     }
-    else if(playerSelection ==  'scissors' && computerSelection == 'rock'){
+    else if(userChoice ==  'scissors' && computerChoice == 'rock'){
         computerScore++;
-        return 'You Lose!';
+        result = 'You Lose!';
         
     }
-    else if(playerSelection == 'paper' && computerSelection == 'rock'){
-        playerScore++;
-        return 'You win!';
+    else if(userChoice == 'paper' && computerChoice == 'rock'){
+        userScore++;
+        result = 'You win!';
         
     }
     
     else{ computerScore++;
-        return 'you Lose!';}
-   
+        result = 'you Lose!';}
+    
+   resultDisplay.innerHTML = result
+   userScoreDisplay.innerHTML = userScore
+   computerScoreDisplay.innerHTML = computerScore
 }
 
-function game (playerScore, computerScore){
-    if (playerScore > computerScore){
-        return 'Player wins!!';
+function endGame(){
+    if (userScore === maxScore){
+        resultDisplay.innerHTML = 'You Win the Game!'
+        window.confirm()
     }
-    else if (playerScore < computerScore){
-        return 'Player Loses!!';
-    }
-    
-    else {return 'Its a tie!!';
-    }
-    }
-
-for (let i = 0; i < 5; i++){
-    let playerSelection = prompt('Pick!').toLowerCase();
-    let computerSelection = Math.floor(Math.random()*3)
-    function choice(){
-        if (computerSelection === 0){
-            computerSelection = 'rock';
-        }
-    
-        else if(computerSelection === 1){
-            computerSelection = 'paper';
-        }
-    
-        else {computerSelection = 'scissors';
+    else if (computerScore === maxScore){
+        'Computer Wins the Game!'
+        window.confirm()
     }}
-    choice();
-    console.log (playerSelection)
-    console.log (computerSelection)
-    console.log (playRound(playerSelection, computerSelection))
-    console.log (playerScore)
-    console.log (computerScore)
-}
-console.log(game(playerScore, computerScore))
