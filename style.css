@@ -1,23 +1,78 @@
+@font-face {
+    font-family: 'bigdex';
+    src: url(./Font/bigdex/Bigdex.ttf);
+}
 
+body {
+    height: 100vh;
+    display: flex;
+    flex-direction: column
+}
 
-main { height: 100vh;
+nav {
+    flex-grow: 0;
+    background-color: #0D1B2A;
+}
+
+main {
+    align-items: center;
+    flex-grow: 1;
+    background-color: #1B263B;
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
+
+}
+
+h2 {
+    font-family: Arial, Helvetica, sans-serif;
+    color: rgb(231, 227, 227);
+}
+
+.header {
+    font-family: 'bigdex';
+    color: #ebdc0e;
+    font-size: 50px;
+    display: flex;
     align-items: center;
+    justify-content: center;
 }
 
 .choice-container {
     display: flex;
+    justify-content: center;
+    align-items: center;
     gap: 200px;
+}
+
+.result-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .score-container {
     display: flex;
+    justify-content: center;
+    align-items: center;
     gap: 100px;
 }
 
 .button-container {
     display: flex;
+    justify-content: center;
+    align-items: center;
     gap: 100px;
+}
+
+button {
+    border-radius: 10px;
+    border-style: solid;
+    border-color: #e9d30b;
+    border-width: 3px;
+    width: 100px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 15px;
+    
+
 }
