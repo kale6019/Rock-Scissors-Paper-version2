@@ -6,6 +6,7 @@ let userChoice
 const userScoreDisplay = document.getElementById('user-score')
 const computerScoreDisplay = document.getElementById('computer-score')
 
+
 let userScore = 0
 let computerScore = 0 
 const maxScore = 5;
@@ -13,6 +14,7 @@ const maxScore = 5;
 possibleChoices.forEach(possibleChoice => possibleChoice.addEventListener('click', (e) => {
     userChoice = e.target.id
     userChoiceDisplay.innerHTML = userChoice
+    
     choice()
     playRound()
     endGame()
@@ -76,9 +78,12 @@ function playRound(){
 function endGame(){
     if (userScore === maxScore){
         resultDisplay.innerHTML = 'You Win the Game!'
-        window.confirm()
+        setTimeout(window.alert(), 2000)
     }
     else if (computerScore === maxScore){
+        resultDisplay.innerHTML = 'You lose the Game!'
         'Computer Wins the Game!'
-        window.confirm()
+        setTimeout(window.alert(), 2000)
     }}
+
+    
