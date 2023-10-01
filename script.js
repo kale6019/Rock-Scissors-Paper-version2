@@ -7,6 +7,11 @@ const userScoreDisplay = document.getElementById('user-score')
 const computerScoreDisplay = document.getElementById('computer-score')
 let computerChoiceSymbol 
 let userChoiceSymbol
+let playAgainButton = document.getElementById('play-again')
+
+const removeRock = document.getElementById('rock')
+const removePaper = document.getElementById('paper')
+const removeScissors = document.getElementById('scissors')
 
 let userScore = 0
 let computerScore = 0 
@@ -27,13 +32,11 @@ possibleChoices.forEach(possibleChoice => possibleChoice.addEventListener('click
 }
 userChoiceDisplay.innerHTML = userChoiceSymbol
     userChoiceDisplay.style.fontSize = '40px'
-
-
-    
     choice()
     playRound()
-    endGame()
 }));
+
+playAgainButton.addEventListener('click', resetGame);
 
 function choice() {
     const randomNumber = Math.floor(Math.random() * 3) + 1;
@@ -93,17 +96,35 @@ function playRound(){
    resultDisplay.innerHTML = result
    userScoreDisplay.innerHTML = userScore
    computerScoreDisplay.innerHTML = computerScore
-}
 
-// function endGame(){
-//     if (userScore === maxScore){
-//         resultDisplay.innerHTML = 'You Win the Game!'
-//         setTimeout(window.alert(), 2000)
-//     }
-//     else if (computerScore === maxScore){
-//         resultDisplay.innerHTML = 'You lose the Game!'
-//         'Computer Wins the Game!'
-//         setTimeout(window.alert(), 2000)
-//     }}
+   if (userScore === maxScore) {
+    resultDisplay.innerHTML = 'You Win the Game!';
+    removePaper.style.display = 'none'
+    removeRock.style.display = 'none'
+    removeScissors.style.display = 'none'
+    playAgainButton.style.display = 'block';
 
     
+} else if (computerScore === maxScore) {
+    resultDisplay.innerHTML = 'Computer Wins the Game!';
+    playAgainButton.style.display = 'block';
+    removePaper.style.display = 'none'
+    removeRock.style.display = 'none'
+    removeScissors.style.display = 'none'
+
+}
+}
+
+function resetGame(){
+    userScore = 0;
+    computerScore = 0;
+    userScoreDisplay.innerHTML = 0;
+    computerScoreDisplay.innerHTML = 0;
+    resultDisplay.innerHTML = 0;
+    userChoiceDisplay.innerHTML = ''
+    computerChoiceDisplay.innerHTML = ''
+    removePaper.style.display = 'block'
+    removeRock.style.display = 'block'
+    removeScissors.style.display = 'block'
+    playAgainButton.style.display = 'none';
+}
